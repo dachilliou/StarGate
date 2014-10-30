@@ -15,8 +15,6 @@
         	/// <param name="jsonString"></param>
 		public function __construct($filter_object = "", $filter_guid= "", $filter_keyword="", $filter_category=""  , $filter_link="", $filter_switch="", $filter_custom="" ) 
 		{
-			//echo  "-".$filter_object."-".$filter_category."--</br>";
-
 			settype ( $this->guid , "string" );					
 			settype ( $this->name , "string" );								
 			settype ( $this->description , "string" );	
@@ -51,7 +49,6 @@
 			settype ( $this->field_valu , "array" );
 			
 			settype ( $this->modificationdate , "string" );
-		//	echo  "-category-".$filter_category."--</br>";
 			try
 			{
 				$this->filter_object =$filter_object ;
@@ -64,7 +61,6 @@
 				if(isset($this->filter_object) AND $this->filter_object <>"")
 				{
 					$this->GetObjectProperties() ;
-					//$this->GetObjectdetails();
 					$this->GetObjectFieldsProperties();
 					$this->GetObjectValues( $filter_guid, $filter_keyword, $filter_category,  $filter_link, $filter_switch, $filter_custom);
 				}
@@ -104,37 +100,35 @@
 			$upd_tmp= "";
 			try
 			{			
-				 $this->guid						= $obj->guid	;
-				 $this->name					= $this->name	;		
-				 $this->description 			= $obj->description	;
-				 $this->table_name 		= $obj->table_name	;
-				 $this->category_guid		= $obj->category_guid	;
-				 $this->theme					= $obj->theme	;
-				 $this->type_of_view 		= $obj->type_of_view	;
-				
-				 $this->is_searchable 	=	$obj->is_searchable	;
-				 $this->has_categories 	=	$obj->has_categories	;		
-				 $this->is_expandable 	=	$obj->is_expandable	;
-				 $this->has_details =	$obj->has_details	;
-				 $this->has_files =	$obj->has_files	;
-				 $this->allow_view = $obj->allow_view	;
-				 $this->allow_edit = $obj->allow_edit	;
-				 $this->allow_copy = $obj->allow_copy	;
-				 $this->allow_delete = $obj->allow_delete	;
-				 $this->applyOn	= $obj->applyOn	;
-				 $this->fields_of_view = $obj->fields_of_view		;
-				 $this->detailObjects =	 $obj->detailObjects	;
-				 $this->field_name =  $obj->field_name	;
-				 $this->field_desc =  $obj->field_desc	;
-				 $this->field_type =  $obj->field_type	;
-				 $this->field_link =  $obj->field_link	;
-				 $this->field_liiD =  $obj->field_liiD	;
+				 $this->guid = $obj->guid;
+				 $this->name = $this->name;		
+				 $this->description = $obj->description;
+				 $this->table_name = $obj->table_name;
+				 $this->category_guid = $obj->category_guid;
+				 $this->theme = $obj->theme;
+				 $this->type_of_view = $obj->type_of_view;
+				 $this->is_searchable =	$obj->is_searchable;
+				 $this->has_categories = $obj->has_categories;		
+				 $this->is_expandable = $obj->is_expandable;
+				 $this->has_details = $obj->has_details;
+				 $this->has_files = $obj->has_files;
+				 $this->allow_view = $obj->allow_view;
+				 $this->allow_edit = $obj->allow_edit;
+				 $this->allow_copy = $obj->allow_copy;
+				 $this->allow_delete = $obj->allow_delete;
+				 $this->applyOn	= $obj->applyOn;
+				 $this->fields_of_view = $obj->fields_of_view;
+				 $this->detailObjects =	 $obj->detailObjects;
+				 $this->field_name =  $obj->field_name;
+				 $this->field_desc =  $obj->field_desc;
+				 $this->field_type =  $obj->field_type;
+				 $this->field_link =  $obj->field_link;
+				 $this->field_liiD =  $obj->field_liiD;
 				 $this->field_trns =  $obj->field_trns	;
 				 $this->field_orde =  $obj->field_orde	;
 				 $this->field_grou =  $obj->field_grou	;
 
-				$this->field_valu = json_decode(json_encode($obj->field_valu), true);
-				//$this->field_valu =array_reverse($this->field_valu, false)	;
+				 $this->field_valu = json_decode(json_encode($obj->field_valu), true);
 				 $this->modificationdate = $obj->modificationdate	;
 
 				 if(strpos($this->table_name, "view_")===0)
@@ -330,10 +324,6 @@
 		{	
 			try
 			{
-					//echo "</BR>--".$this->filter_object."-</BR>";
-					//$this->filter_object = str_replace(PHP_EOL, '', $this->filter_object);
-
-
 				$query =" 	SELECT guid, description, object, table_name, category_guid, applyOn, is_searchable,	has_categories,	
 					is_expandable, has_details, has_files,	type_of_view, fields_of_view, theme, 	allow_view,	allow_edit, 
 					allow_copy, allow_delete, 	modificationdate 
@@ -439,8 +429,6 @@
 			{
 			   $a[] = $entry;
 			}
-			//echo  "</br>";
-			//print_r($a);
 			$this->field_valu = $a;
 		}
 		
@@ -467,7 +455,6 @@
 			$search_string_link="";
 			$search_string_keyword="";
 			$search_string_category="";
-			//$search_string_category=" OR category_guid = '".$this->category_guid."' ";
 			$search_string = " WHERE 1=1 ";	
 
 
