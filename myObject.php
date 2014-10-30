@@ -115,39 +115,23 @@
 				 $this->is_searchable 	=	$obj->is_searchable	;
 				 $this->has_categories 	=	$obj->has_categories	;		
 				 $this->is_expandable 	=	$obj->is_expandable	;
-				 $this->has_details 		=	$obj->has_details	;
-				 $this->has_files				=	$obj->has_files	;
-				 $this->allow_view			= $obj->allow_view	;
-				 $this->allow_edit 			= $obj->allow_edit	;
-				 $this->allow_copy			= $obj->allow_copy	;
-				 $this->allow_delete 		= $obj->allow_delete	;
-				/*
-				 $this->applyOn				= array_reverse($obj->applyOn, false)	;
-				 $this->fields_of_view 	=	 array_reverse($obj->fields_of_view, false)	;	
-				 $this->detailObjects 		=	 array_reverse($obj->detailObjects, false)	;
-				 $this->field_name			= array_reverse( $obj->field_name, false)	;
-				 $this->field_desc			=  $obj->field_desc	;
-				 $this->field_type				=  array_reverse($obj->field_type	, false);
-				 $this->field_link				=  array_reverse($obj->field_link, false)	;
-				 $this->field_liiD				= array_reverse( $obj->field_liiD, false)	;
-				 $this->field_trns				=  array_reverse($obj->field_trns	, false);
-				 $this->field_orde			=  array_reverse($obj->field_orde, false)	;
-				 $this->field_grou			=  array_reverse($obj->field_grou, false)	;
-				*/
-
-				 $this->applyOn				= $obj->applyOn	;
-				 $this->fields_of_view 	=	 $obj->fields_of_view		;
-				 $this->detailObjects 		=	 $obj->detailObjects	;
-				 $this->field_name			=  $obj->field_name	;
-				 $this->field_desc			=  $obj->field_desc	;
-				 $this->field_type				=  $obj->field_type	;
-				 $this->field_link				=  $obj->field_link	;
-				 $this->field_liiD				=  $obj->field_liiD	;
-				 $this->field_trns				=  $obj->field_trns	;
-				 $this->field_orde			=  $obj->field_orde	;
-				 $this->field_grou			=  $obj->field_grou	;
-
-				// $this->field_valu				= $obj->field_valu	;
+				 $this->has_details =	$obj->has_details	;
+				 $this->has_files =	$obj->has_files	;
+				 $this->allow_view = $obj->allow_view	;
+				 $this->allow_edit = $obj->allow_edit	;
+				 $this->allow_copy = $obj->allow_copy	;
+				 $this->allow_delete = $obj->allow_delete	;
+				 $this->applyOn	= $obj->applyOn	;
+				 $this->fields_of_view = $obj->fields_of_view		;
+				 $this->detailObjects =	 $obj->detailObjects	;
+				 $this->field_name =  $obj->field_name	;
+				 $this->field_desc =  $obj->field_desc	;
+				 $this->field_type =  $obj->field_type	;
+				 $this->field_link =  $obj->field_link	;
+				 $this->field_liiD =  $obj->field_liiD	;
+				 $this->field_trns =  $obj->field_trns	;
+				 $this->field_orde =  $obj->field_orde	;
+				 $this->field_grou =  $obj->field_grou	;
 
 				$this->field_valu = json_decode(json_encode($obj->field_valu), true);
 				//$this->field_valu =array_reverse($this->field_valu, false)	;
@@ -179,18 +163,13 @@
 							$upd_tmp .= ", ".$this->field_desc[$j]." = '". mysql_real_escape_string($this->field_valu[$i][$this->field_desc[$j]])."' ";
 						}
 					}
-
 					$query = "INSERT INTO ".$tbl_nm."(".$ins_tmp_keys.")  VALUES (".$ins_tmp_values.")   ON DUPLICATE KEY  UPDATE   ".$upd_tmp."  "; 
-//echo $query;
 					if( $this->ExecuteQueries($query ) ==1)
 					{
 						$result[$k]=  $this->field_valu[$i]->guid;
 						$k++;
 					}
 				}
-
-				//print_r($result);
-				//return $result;
 			}
 			catch(Exception $e)
 			{
@@ -300,36 +279,24 @@
 						//echo "--OBJECT DID NOT CROP--";
 
 						}
-/*
-
-						if(! $this->field_valu[$i]-> $filter_array[ "field_defines_crop"][$y].$filter_array[ "operator_defines_crop"][$y]." '". $filter_array[ "value_defines_crop"][$y]."' "   )
-						{
-							unset($result->field_valu[$i]);
-						}*/
 					}
 				}
-
-//print_r($result);
-
 			$result->field_valu = array_values($result->field_valu); 
-
 			return $result; 
 			}
 			catch(Exception $e)
 			{
 				echo "Error 005";
-			return $result; 
+				return $result; 
 			}
 		}
 
 
 
-
-
 //----------------------------------------------------------------- private functions -------------------------------------------------------------------\\
-		/// <summary>
-        ///  001.000
-        /// </summary>
+ 		/// <summary>
+        	///  001.000
+        	/// </summary>
 		/// <param name="query">the query to be executed</param>
 		private function ExecuteQueries($query = "") 
 		{	
@@ -356,9 +323,9 @@
 				return null;
 			}
 		}		
-        /// <summary>
-        ///  001.001                 
-        /// </summary>
+        	/// <summary>
+        	///  001.001                 
+        	/// </summary>
 		private function GetObjectProperties() 
 		{	
 			try
@@ -372,7 +339,6 @@
 					allow_copy, allow_delete, 	modificationdate 
 				FROM  `_objects` 
 				WHERE `_objects`.`name`  = '".$this->filter_object."'  OR   `_objects`.`guid` ='".$this->filter_object."' ";
-//echo "</BR>".$query;
 				$recordset = $this->ExecuteQueries($query); 
 				$totalRows_Recordset = mysql_num_rows($recordset);	
 				
@@ -423,8 +389,8 @@
 		}
 		
 		/// <summary>
-        ///  001.002
-        /// </summary>
+        	///  001.002
+        	/// </summary>
 		private function GetObjectFieldsProperties()
 		{
 			try
@@ -441,21 +407,8 @@
 
 					$this->field_name[$i] = $this->table_name.".".$tmp_FLDS["field"];	
 					$this->field_desc[$i] = $tmp_FLDS["field"];	
-					//$this->field_indx[ $i] = $i;	
 					$this->field_type[ $i] = $tmp_FLDS["fieldType"];	
 					$this->field_link[ $i] = $tmp_FLDS["fieldLink"];	
-/*
-					$this->field_name[$tmp_FLDS["field"]] = $this->table_name.".".$tmp_FLDS["field"];	
-					$this->field_desc[$i] = $tmp_FLDS["field"];	
-					$this->field_indx[ $tmp_FLDS["field"]] = $i;	
-					$this->field_type[ $tmp_FLDS["field"]] = $tmp_FLDS["fieldType"];	
-					$this->field_link[ $tmp_FLDS["field"]] = $tmp_FLDS["fieldLink"];	
-*/
-					//$this->field_liiD[ $tmp_FLDS["field"]] 
-					//$this->applyOn[ $tmp_FLDS["field"]] 
-					//$this->fields_of_view[ $tmp_FLDS["field"]] 
-					//$this->detailObjects[ $tmp_FLDS["field"]] 
-
 					$this->field_trns[  $i] = $tmp_FLDS["descriptionGr"];	
 					$this->field_orde[   $i] = $tmp_FLDS["fieldorder"];	
 					$this->field_grou[   $i] = $tmp_FLDS["fieldgroup"];	
@@ -470,8 +423,8 @@
 			}
 		}
 		/// <summary>
-        ///  001.003
-        /// </summary>
+	        ///  001.003
+	        /// </summary>
 		private function GetObjectValues($filter_guid= "", $filter_keyword="", $filter_category="", $filter_link="", $filter_switch=""  , $filter_custom="" )
 		{
 			for($i=1; $i< sizeof($this->field_desc); $i++)
