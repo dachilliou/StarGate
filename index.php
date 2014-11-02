@@ -9,6 +9,6 @@
  </head>
 
  <body>
-  <?php echo date(DATE_RFC2822); ?>
+  What just did you said?</br><?php echo date(DATE_RFC2822); ?>
  </body>
 </html>
